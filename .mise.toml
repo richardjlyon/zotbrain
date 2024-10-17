@@ -1,0 +1,7 @@
+[tools]
+uv = "0.4.22"
+"pipx:psf/black" = "latest"
+"node" = "22"
+
+[env]
+_.python.venv = ".venv"
