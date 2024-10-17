@@ -42,12 +42,12 @@ class Tag(BaseModel):
 
 class Data(BaseModel):
 
-    @field_validator('url', mode='before')
+    @field_validator("url", mode="before")
     def validate_url(cls, v):
-        if v == '':
+        if v == "":
             return None
         return v
-    
+
     key: str
     version: int
     itemType: str

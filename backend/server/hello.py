@@ -1,5 +1,6 @@
 from zotero.api import Zotero
 
+
 def main():
     client = Zotero()
     coll = client.get_collections()
@@ -8,4 +9,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

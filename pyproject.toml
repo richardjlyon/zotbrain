@@ -9,3 +9,7 @@ server = { workspace = true }
 
 [tool.uv.workspace]
 members = ["backend/*"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"

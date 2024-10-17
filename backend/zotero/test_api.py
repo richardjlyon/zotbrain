@@ -2,9 +2,14 @@ import pytest
 
 from zotero.api import Zotero
 
+
 @pytest.fixture
 def zotero_client():
     return Zotero()
+
+
+# def test_example():
+# assert True
 
 
 def test_get_collections(zotero_client):
