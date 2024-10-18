@@ -41,7 +41,6 @@ class Tag(BaseModel):
 
 
 class Data(BaseModel):
-
     @field_validator("url", mode="before")
     def validate_url(cls, v):
         if v == "":

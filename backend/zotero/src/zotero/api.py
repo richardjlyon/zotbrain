@@ -1,6 +1,6 @@
 import os
-from typing import List
 from pathlib import Path
+from typing import List
 
 import requests
 from dotenv import load_dotenv
@@ -43,6 +43,14 @@ class Zotero:
         user = response.json()
         return UserResponse(**user)
 
+    def get_collection_ids(self) -> List[dict]:
+        """
+        Get a dict of collection name and ids
+        :return: a dict of collection name and ids
+        """
+        collections = self.get_collections()
+        return {collection.data.name: collection.data.key for collection in collections}
+
     def get_collections(self) -> List[CollectionResponse]:
         """
         Get a list of collections
@@ -53,25 +61,6 @@ class Zotero:
         response.raise_for_status()
         collections = response.json()
         return [CollectionResponse(**collection) for collection in collections]
-
-    def get_collection_id_for_name(self, collection_name: str) -> str:
-        """
-        Get the collection key for a given collection name
-        :param collection_name: the name of the collection
-        :return: the key of the collection
-        """
-        collections = self.get_collections()
-        collection = next(
-            (
-                collection
-                for collection in collections
-                if collection.data.name == collection_name
-            ),
-            None,
-        )
-        if collection is None:
-            raise ValueError(f"Collection '{collection_name}' not found")
-        return collection.data.key
 
     def get_items_for_collection(self, collection_key: str) -> List[ItemResponse]:
         """
